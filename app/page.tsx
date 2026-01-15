@@ -1,34 +1,62 @@
-
+"use client";
 
 import Footer from "./components/Footer";
 import Login from "./components/LoginModal";
 import Image from "next/image";
-import Link from "next/link";
+import { useEffect } from "react";
 import { BsStarFill, BsStarHalf } from "react-icons/bs";
 import { AiFillFileText, AiFillBulb, AiFillAudio } from "react-icons/ai";
 import { BiCrown } from "react-icons/bi";
 import { RiLeafLine } from "react-icons/ri";
 import landing from "../assets/landing.png";
 import logo from "../assets/logo.png";
-import { decrement , increment } from "./store/slice";
+import { decrement, increment } from "./store/slice";
 import { useDispatch, useSelector } from "react-redux";
 import type { RootState } from "./store/store";
 
 export default function Home() {
-  
+  const showLoginModal = () => {
+    const modalRoot = document.getElementById("modal-root");
+    const loginModal = document.getElementById("login-modal");
+    if (modalRoot && loginModal) {
+      modalRoot.classList.add("active");
+      loginModal.classList.add("active");
+    }
+  };
+
+  useEffect(() => {
+    const highlights: NodeListOf<Element> = document.querySelectorAll("#highlight");
+    let currentIndex = 1;
+    let secondIndex = 0;
+
+    const interval = setInterval(() => {
+      secondIndex = currentIndex + (highlights.length / 2);
+      console.log(currentIndex, secondIndex);
+      highlights[(currentIndex - 1 + highlights.length) % (highlights.length / 2 )].classList.remove("text-emerald-400");
+      highlights[(secondIndex - 1 + highlights.length) % (highlights.length / 2 ) + (highlights.length / 2)].classList.remove("text-emerald-400");
+      highlights[currentIndex].classList.add("text-emerald-400");
+      highlights[secondIndex].classList.add("text-emerald-400");
+      currentIndex = (currentIndex + 1) % (highlights.length / 2);
+      
+    }, 2000);
+
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <>
-      <div id="modal-root">
+      <div id="modal-root" className="login-modal">
         <Login />
       </div>
       <nav className="nav">
         <div className="nav__wrapper">
           <figure className="nav__img--mask">
-            <Image className="nav__img" src={logo} alt="logo" />
+            <Image className="nav__img" src={logo} alt="logo"/>
           </figure>
           <ul className="nav__list--wrapper">
-            <li className="nav__list nav__list--login">Login</li>
+            <li className="nav__list nav__list--login" onClick={showLoginModal}>
+              Login
+            </li>
             <li className="nav__list nav__list--mobile">About</li>
             <li className="nav__list nav__list--mobile">Contact</li>
             <li className="nav__list nav__list--mobile">Help</li>
@@ -51,7 +79,9 @@ export default function Home() {
                   <br className="remove--tablet" />
                   and even people who don’t like to read.
                 </div>
-                <button className="btn home__cta--btn">Login</button>
+                <button className="btn home__cta--btn" onClick={showLoginModal}>
+                  Login
+                </button>
               </div>
               <figure className="landing__image--mask">
                 <Image src={landing} alt="landing" />
@@ -98,18 +128,22 @@ export default function Home() {
             <div className="statistics__wrapper">
               <div className="statistics__content--header">
                 <div className="statistics__heading">
-                  Enhance your knowledge
+                  <span id='highlight' className='text-emerald-400'>Enhance your knowledge</span>
                 </div>
                 <div className="statistics__heading">
-                  Achieve greater success
+                  <span id='highlight'>Achieve greater success</span>
                 </div>
-                <div className="statistics__heading">Improve your health</div>
                 <div className="statistics__heading">
-                  Develop better parenting skills
+                  <span id='highlight'>Improve your health</span>
                 </div>
-                <div className="statistics__heading">Increase happiness</div>
                 <div className="statistics__heading">
-                  Be the best version of yourself!
+                  <span id='highlight'>Develop better parenting skills</span>
+                </div>
+                <div className="statistics__heading">
+                  <span id='highlight'>Increase happiness</span>
+                </div>
+                <div className="statistics__heading">
+                  <span id='highlight'>Be the best version of yourself!</span>
                 </div>
               </div>
               <div className="statistics__content--details">
@@ -159,17 +193,23 @@ export default function Home() {
                 </div>
               </div>
               <div className="statistics__content--header statistics__content--header-second">
-                <div className="statistics__heading">Expand your learning</div>
-                <div className="statistics__heading">Accomplish your goals</div>
                 <div className="statistics__heading">
-                  Strengthen your vitality
+                  <span id='highlight' className="text-emerald-400">Expand your learning</span>
                 </div>
                 <div className="statistics__heading">
-                  Become a better caregiver
+                  <span id='highlight'>Accomplish your goals</span>
                 </div>
-                <div className="statistics__heading">Improve your mood</div>
                 <div className="statistics__heading">
-                  Maximize your abilities
+                  <span id='highlight'>Strengthen your vitality</span>
+                </div>
+                <div className="statistics__heading">
+                  <span id='highlight'>Become a better caregiver</span>
+                </div>
+                <div className="statistics__heading">
+                  <span id='highlight'>Improve your mood</span>
+                </div>
+                <div className="statistics__heading">
+                  <span id='highlight'>Maximize your abilities</span>
                 </div>
               </div>
             </div>

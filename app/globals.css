@@ -583,3 +583,7 @@ button:disabled {
   z-index: 500;
   display: none;
 }
+
+.login-modal.active {
+  display: block;
+}
