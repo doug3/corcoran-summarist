@@ -1,3 +1,7 @@
+import React from 'react';
+import SideBar from '../components/SideBar';
+import SearchBar from '../components/SearchBar';
+
 export default function LoggedInLayout({
   children,
 }: {
@@ -5,6 +9,8 @@ export default function LoggedInLayout({
 }) {
     return (
         <div className="logged-in-layout">
+            <SideBar />
+            <SearchBar />
             {children}
         </div>
     );
