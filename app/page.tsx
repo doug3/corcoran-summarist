@@ -1,9 +1,8 @@
 "use client";
-
+import { ReactNode, useEffect, useState } from "react";
 import Footer from "./components/Footer";
-import Login from "./components/LoginModal";
+import Login from "./components/Login";
 import Image from "next/image";
-import { useEffect } from "react";
 import { BsStarFill, BsStarHalf } from "react-icons/bs";
 import { AiFillFileText, AiFillBulb, AiFillAudio } from "react-icons/ai";
 import { BiCrown } from "react-icons/bi";
@@ -14,15 +13,21 @@ import { decrement, increment } from "./store/slice";
 import { useDispatch, useSelector } from "react-redux";
 import type { RootState } from "./store/store";
 
-export default function Home() {
-  const showLoginModal = () => {
-    const modalRoot = document.getElementById("modal-root");
-    const loginModal = document.getElementById("login-modal");
-    if (modalRoot && loginModal) {
-      modalRoot.classList.add("active");
-      loginModal.classList.add("active");
-    }
-  };
+export default function Home({ handleShowModal }: { handleShowModal: () => void }) {
+
+ 
+    
+// const dispatch = useDispatch();
+//   const showLoginModal = () => {
+//     const modalRoot = document.getElementById("modal-root");
+//     const loginModal = document.getElementById("login-modal");
+//     if (modalRoot && loginModal) {
+//       modalRoot.classList.add("active");
+//       loginModal.classList.add("active");
+//     }
+//   };
+
+
 
   useEffect(() => {
     const highlights: NodeListOf<Element> = document.querySelectorAll("#highlight");
@@ -45,16 +50,16 @@ export default function Home() {
 
   return (
     <>
-      <div id="modal-root" className="login-modal">
-        <Login />
-      </div>
+      {/* <div id="modal-root" className="login-modal w-full h-full fixed top-0 left-0 flex items-center justify-center">
+        <Login handleShowModal={showLoginModal} />
+      </div> */}
       <nav className="nav">
         <div className="nav__wrapper">
           <figure className="nav__img--mask">
             <Image className="nav__img" src={logo} alt="logo"/>
           </figure>
           <ul className="nav__list--wrapper">
-            <li className="nav__list nav__list--login" onClick={showLoginModal}>
+            <li className="nav__list nav__list--login" onClick={handleShowModal}>
               Login
             </li>
             <li className="nav__list nav__list--mobile">About</li>
@@ -79,7 +84,7 @@ export default function Home() {
                   <br className="remove--tablet" />
                   and even people who don’t like to read.
                 </div>
-                <button className="btn home__cta--btn" onClick={showLoginModal}>
+                <button className="btn home__cta--btn" onClick={handleShowModal}>
                   Login
                 </button>
               </div>

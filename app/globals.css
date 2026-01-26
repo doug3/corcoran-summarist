@@ -6,12 +6,12 @@
   --foreground: #171717;
 }
 
-@theme inline {
+/* @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
-}
+} */
 
 @media (prefers-color-scheme: dark) {
   :root {
@@ -29,7 +29,6 @@ body {
 
 * {
   margin: 0;
-  padding: 0;
   box-sizing: border-box;
   font-family: "Roboto", sans-serif;
 }
@@ -48,12 +47,12 @@ ul {
   list-style: none;
 }
 
-button {
+/* button {
   cursor: pointer;
   outline: none;
   border: none;
   background-color: transparent;
-}
+} */
 
 button:active {
   transform: translateY(1px);
@@ -569,21 +568,3 @@ button:disabled {
   }
 }
 
-/* LOGIN MODAL */
-
-.login-modal {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: white;
-  padding: 20px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  border-radius: 8px;
-  z-index: 500;
-  display: none;
-}
-
-.login-modal.active {
-  display: block;
-}
