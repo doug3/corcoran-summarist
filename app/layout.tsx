@@ -25,8 +25,11 @@ export default function RootLayout({
   const [showModal, setShowModal] = useState(false);
 
   const handleShowModal = () => {
+    document.body.style.overflow = showModal ? "auto" : "hidden";
+    window.scrollTo(0, 0);
     setShowModal(!showModal);
   };
+  
   return (
     <StoreProvider>
       <html lang="en">
