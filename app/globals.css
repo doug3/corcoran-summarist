@@ -28,7 +28,6 @@ body {
 
 
 * {
-  margin: 0;
   box-sizing: border-box;
   font-family: "Roboto", sans-serif;
 }
@@ -47,12 +46,6 @@ ul {
   list-style: none;
 }
 
-/* button {
-  cursor: pointer;
-  outline: none;
-  border: none;
-  background-color: transparent;
-} */
 
 button:active {
   transform: translateY(1px);
@@ -567,4 +560,3 @@ button:disabled {
     display: none;
   }
 }
-

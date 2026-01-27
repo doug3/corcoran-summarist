@@ -12,7 +12,7 @@ export default function Login({
       className="w-full h-full absolute top-0 backdrop-filter backdrop-brightness-75 backdrop-blur-md flex justify-center items-center"
       onClick={handleShowModal}
     >
-      <div className="bg-white p-20 rounded-lg shadow-lg max-w-md w-full">
+      <div className="bg-white rounded-lg shadow-lg max-w-md w-full">
         <div
           className="relative bg-white rounded-lg shadow border-20 border-white"
           onClick={(e) => e.stopPropagation()}
@@ -51,7 +51,7 @@ export default function Login({
             </div>
 
             <div className="mt-7 flex flex-col gap-6">
-              <button className="inline-flex h-12 w-full text-white justify-center items-center text-center bg-blue-700! hover:bg-blue-900! rounded border border-slate-300 p-2 text-lg font-medium outline-none focus:ring-2 focus:ring-[#333] focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-60">
+              <button className="inline-flex h-12 w-full text-white justify-center items-center text-center bg-blue-700 hover:bg-blue-900 rounded border border-slate-300 p-2 text-lg font-medium outline-none focus:ring-2 focus:ring-[#333] focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-60">
                 <FaUserLarge className="absolute left-2 h-8 w-8" />
                 Login as a Guest
               </button>
@@ -62,7 +62,7 @@ export default function Login({
                 <div className="h-px w-full bg-slate-600 "></div>
               </div>
 
-              <button className="inline-flex h-12 w-full items-center justify-center bg-blue-500! hover:bg-blue-700! rounded p-2 text-lg font-medium text-white outline-none focus:ring-2 focus:ring-[#333] focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-60">
+              <button className="inline-flex h-12 w-full items-center justify-center bg-blue-500 hover:bg-blue-700 rounded p-2 text-lg font-medium text-white outline-none focus:ring-2 focus:ring-[#333] focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-60">
                 <Image
                   width={100}
                   height={100}
@@ -90,7 +90,7 @@ export default function Login({
                 type="email"
                 autoComplete="email"
                 required
-                className="w-full rounded-lg border border-gray-300 px-3! py-2! shadow-sm placeholder:text-gray-400 outline-green-400 mb-4"
+                className="w-full rounded-lg border border-gray-300 px-3 py-2 shadow-sm placeholder:text-gray-400 outline-green-400 mb-4"
                 placeholder="Email Address"
               />
               <label htmlFor="password" className="sr-only">
@@ -101,13 +101,13 @@ export default function Login({
                 type="password"
                 autoComplete="current-password"
                 required
-                className="w-full rounded-lg border border-gray-300 px-3! py-2! mt-2! shadow-sm placeholder:text-gray-400 outline-green-400"
+                className="w-full rounded-lg border border-gray-300 px-3 py-2 mt-1! shadow-sm placeholder:text-gray-400 outline-green-400"
                 placeholder="Password"
               />
 
               <button
                 type="submit"
-                className="inline-flex w-full items-center justify-center rounded-lg bg-green-400 p-2! py-3! mt-4! text-xl font-medium text-black outline-none  disabled:bg-gray-400"
+                className="inline-flex w-full items-center justify-center rounded-lg bg-green-400 p-2 py-3 mt-4! text-xl font-medium text-black outline-none  disabled:bg-gray-400"
               >
                 Login
               </button>
@@ -119,7 +119,7 @@ export default function Login({
                   href="/forgot-password"
                   className="text-blue-800 hover:text-blue-600"
                 >
-                  Reset your password?
+                  Forgot your password?
                 </a>
               </p>
 

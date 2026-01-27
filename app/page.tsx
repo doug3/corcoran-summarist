@@ -1,9 +1,7 @@
 "use client";
 import { ReactNode, useEffect, useState } from "react";
 import Footer from "./components/Footer";
-import Login from "./components/Login";
 import Image from "next/image";
-import { BsStarFill, BsStarHalf } from "react-icons/bs";
 import { AiFillFileText, AiFillBulb, AiFillAudio } from "react-icons/ai";
 import { BiCrown } from "react-icons/bi";
 import { RiLeafLine } from "react-icons/ri";
@@ -12,21 +10,14 @@ import logo from "../assets/logo.png";
 import { decrement, increment } from "./store/slice";
 import { useDispatch, useSelector } from "react-redux";
 import type { RootState } from "./store/store";
+import Starfill from "./components/Starfill";
 
-export default function Home({ handleShowModal }: { handleShowModal: () => void }) {
+interface HomeProps {
+  handleShowModal: () => void;
+}
 
- 
-    
-// const dispatch = useDispatch();
-//   const showLoginModal = () => {
-//     const modalRoot = document.getElementById("modal-root");
-//     const loginModal = document.getElementById("login-modal");
-//     if (modalRoot && loginModal) {
-//       modalRoot.classList.add("active");
-//       loginModal.classList.add("active");
-//     }
-//   };
-
+export default function Home({ handleShowModal }: HomeProps) {
+ const dispatch = useDispatch();
 
 
   useEffect(() => {
@@ -49,10 +40,7 @@ export default function Home({ handleShowModal }: { handleShowModal: () => void 
   }, []);
 
   return (
-    <>
-      {/* <div id="modal-root" className="login-modal w-full h-full fixed top-0 left-0 flex items-center justify-center">
-        <Login handleShowModal={showLoginModal} />
-      </div> */}
+    <div>
       <nav className="nav">
         <div className="nav__wrapper">
           <figure className="nav__img--mask">
@@ -68,6 +56,7 @@ export default function Home({ handleShowModal }: { handleShowModal: () => void 
           </ul>
         </div>
       </nav>
+      <div className="max-w-4xl lg:max-w-5xl xl:max-w-6xl mx-auto">
       <section id="landing">
         <div className="container">
           <div className="row">
@@ -82,7 +71,7 @@ export default function Home({ handleShowModal }: { handleShowModal: () => void 
                   <br className="remove--tablet" />
                   individuals who barely have time to read,
                   <br className="remove--tablet" />
-                  and even people who don’t like to read.
+                  and even people who don&apos;t like to read.
                 </div>
                 <button className="btn home__cta--btn" onClick={handleShowModal}>
                   Login
@@ -230,11 +219,11 @@ export default function Home({ handleShowModal }: { handleShowModal: () => void 
                 <div className="review__header">
                   <div className="review__name">Hanna M.</div>
                   <div className="review__stars">
-                    <BsStarFill />
+                    <Starfill wholeStars={5} halfStars={0} />
                   </div>
                 </div>
                 <div className="review__body">
-                  This app has been a <b>game-changer</b> for me! It's saved me
+                  This app has been a <b> game-changer</b> for me! It's saved me
                   so much time and effort in reading and comprehending books.
                   Highly recommend it to all book lovers.
                 </div>
@@ -243,12 +232,12 @@ export default function Home({ handleShowModal }: { handleShowModal: () => void 
                 <div className="review__header">
                   <div className="review__name">David B.</div>
                   <div className="review__stars">
-                    <BsStarFill />
+                    <Starfill wholeStars={5} halfStars={0} />
                   </div>
                 </div>
                 <div className="review__body">
                   I love this app! It provides
-                  <b>concise and accurate summaries</b> of books in a way that
+                  <b> concise and accurate summaries</b> of books in a way that
                   is easy to understand. It's also very user-friendly and
                   intuitive.
                 </div>
@@ -257,13 +246,13 @@ export default function Home({ handleShowModal }: { handleShowModal: () => void 
                 <div className="review__header">
                   <div className="review__name">Nathan S.</div>
                   <div className="review__stars">
-                    <BsStarFill />
+                    <Starfill wholeStars={5} halfStars={0} />
                   </div>
                 </div>
                 <div className="review__body">
                   This app is a great way to get the main takeaways from a book
                   without having to read the entire thing.
-                  <b>The summaries are well-written and informative.</b>
+                  <b> The summaries are well-written and informative.</b>
                   Definitely worth downloading.
                 </div>
               </div>
@@ -271,12 +260,12 @@ export default function Home({ handleShowModal }: { handleShowModal: () => void 
                 <div className="review__header">
                   <div className="review__name">Ryan R.</div>
                   <div className="review__stars">
-                    <BsStarFill />
+                    <Starfill wholeStars={5} halfStars={0} />
                   </div>
                 </div>
                 <div className="review__body">
                   If you're a busy person who
-                  <b>loves reading but doesn't have the time</b> to read every
+                  <b> loves reading but doesn't have the time</b> to read every
                   book in full, this app is for you! The summaries are thorough
                   and provide a great overview of the book's content.
                 </div>
@@ -306,8 +295,7 @@ export default function Home({ handleShowModal }: { handleShowModal: () => void 
               </div>
               <div className="numbers">
                 <div className="numbers__icon numbers__star--icon">
-                  <BsStarFill />
-                  <BsStarHalf />
+                  <Starfill wholeStars={4} halfStars={1} />
                 </div>
                 <div className="numbers__title">4.5 Stars</div>
                 <div className="numbers__sub--title">
@@ -327,7 +315,8 @@ export default function Home({ handleShowModal }: { handleShowModal: () => void 
           </div>
         </div>
       </section>
+      </div>
       <Footer />
-    </>
+    </div>
   );
 }
