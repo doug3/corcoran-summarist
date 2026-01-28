@@ -1,6 +1,9 @@
 "use client";
+
+import Link from "next/link";
 import Image from "next/image";
 import { FaUserLarge } from "react-icons/fa6";
+import { IconFidgetSpinner } from "@tabler/icons-react";
 
 export default function Login({
   handleShowModal,
@@ -51,7 +54,7 @@ export default function Login({
             </div>
 
             <div className="mt-7 flex flex-col gap-6">
-              <button className="inline-flex h-12 w-full text-white justify-center items-center text-center bg-blue-700 hover:bg-blue-900 rounded border border-slate-300 p-2 text-lg font-medium outline-none focus:ring-2 focus:ring-[#333] focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-60">
+              <button id="guest-login" className="inline-flex h-12 w-full text-white justify-center items-center text-center bg-blue-700 hover:bg-blue-900 rounded border border-slate-300 p-2 text-lg font-medium outline-none focus:ring-2 focus:ring-[#333] focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-60">
                 <FaUserLarge className="absolute left-2 h-8 w-8" />
                 Login as a Guest
               </button>
@@ -62,7 +65,7 @@ export default function Login({
                 <div className="h-px w-full bg-slate-600 "></div>
               </div>
 
-              <button className="inline-flex h-12 w-full items-center justify-center bg-blue-500 hover:bg-blue-700 rounded p-2 text-lg font-medium text-white outline-none focus:ring-2 focus:ring-[#333] focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-60">
+              <button id="google-login" className="inline-flex h-12 w-full items-center justify-center bg-blue-500 hover:bg-blue-700 rounded p-2 text-lg font-medium text-white outline-none focus:ring-2 focus:ring-[#333] focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-60">
                 <Image
                   width={100}
                   height={100}
@@ -72,7 +75,6 @@ export default function Login({
                 />
                 Login with Google
               </button>
-
               <div className="flex w-full items-center gap-2 py-6 text-sm text-slate-600">
                 <div className="h-px w-full bg-slate-600"></div>
                 or
@@ -106,6 +108,7 @@ export default function Login({
               />
 
               <button
+                id="email-login"
                 type="submit"
                 className="inline-flex w-full items-center justify-center rounded-lg bg-green-400 p-2 py-3 mt-4! text-xl font-medium text-black outline-none  disabled:bg-gray-400"
               >
@@ -115,21 +118,21 @@ export default function Login({
             </form>
 
             <p className="mb-3! mt-4! text-lg text-gray-500 text-center">
-                <a
+                <Link
                   href="/forgot-password"
                   className="text-blue-800 hover:text-blue-600"
                 >
                   Forgot your password?
-                </a>
+                </Link>
               </p>
 
             <div className="mt-6! text-center text-lg text-blue-800 hover:text-blue-500 bg-slate-300">
-              <a
+              <Link
                 href="/signup"
                 className="font-medium"
               >
                 Don&apos;t have an account?
-              </a>
+              </Link>
             </div>
           </div>
         </div>

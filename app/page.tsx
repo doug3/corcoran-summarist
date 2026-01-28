@@ -11,6 +11,8 @@ import { decrement, increment } from "./store/slice";
 import { useDispatch, useSelector } from "react-redux";
 import type { RootState } from "./store/store";
 import Starfill from "./components/Starfill";
+import { IconFidgetSpinner } from "@tabler/icons-react";
+{/* <IconFidgetSpinner className="animate-spin w-12 h-12 mx-auto" /> */}
 
 interface HomeProps {
   handleShowModal: () => void;
