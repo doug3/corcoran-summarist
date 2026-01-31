@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { auth } from "../firebase";
+import { auth } from "../firebase/config";
 import {
   useCreateUserWithEmailAndPassword,
   useSendEmailVerification,
@@ -23,13 +23,17 @@ export default function Login({
   const [sendEmailVerification] = useSendEmailVerification(auth);
 
   const onSubmitCreate = async () => {
+    console.log("Creating user...",email,"   ",password);
     await createUser(email, password);
     await sendEmailVerification();
+    router.push("/loggedin");
   };
 
   const onSubmitLogin = async () => {
     await createUser(email, password);
     await sendEmailVerification();
+    console.log("Checking verification status...",email,"   ",password);
+    router.push("/loggedin");
   };
   return (
     <div

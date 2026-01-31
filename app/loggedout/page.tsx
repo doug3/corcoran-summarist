@@ -1,16 +1,16 @@
 "use client";
 import { ReactNode, useEffect, useState } from "react";
-import Footer from "./components/Footer";
+import Footer from "../components/Footer";
 import Image from "next/image";
 import { AiFillFileText, AiFillBulb, AiFillAudio } from "react-icons/ai";
 import { BiCrown } from "react-icons/bi";
 import { RiLeafLine } from "react-icons/ri";
 import landing from "../assets/landing.png";
 import logo from "../assets/logo.png";
-import { decrement, increment } from "./store/slice";
+import { decrement, increment } from "../store/slice";
 import { useDispatch, useSelector } from "react-redux";
-import type { RootState } from "./store/store";
-import Starfill from "./components/Starfill";
+import type { RootState } from "../store/store";
+import Starfill from "../components/Starfill";
 import { IconFidgetSpinner } from "@tabler/icons-react";
 {/* <IconFidgetSpinner className="animate-spin w-12 h-12 mx-auto" /> */}
 
