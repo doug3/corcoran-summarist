@@ -1,19 +1,24 @@
+'use client'
 
-
+import React from "react";
+import { useRouter } from "next/navigation";
 import LoggedOut from "../loggedout/page";
-import LoggedIn from "../loggedIn/page";
-
-
 
 const Landing = () => {
+    const loggedIn = true; // Replace with actual authentication logic
+    const router = useRouter();
 
-    const loggedIn = false; // Replace with actual authentication logic
+    React.useEffect(() => {
+        if (loggedIn) {
+            router.push('/loggedIn');
+        }
+    }, [loggedIn, router]);
 
-  return (
-    <div>
-        {loggedIn ? <LoggedIn /> : <LoggedOut />}
-    </div>
-  )
+    return (
+        <div>
+            {!loggedIn ? <LoggedOut /> : <div>Redirecting...</div>}
+        </div>
+    );
 }
 
-export default Landing
+export default Landing;

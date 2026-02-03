@@ -5,8 +5,6 @@ import Image from "next/image";
 import { AiFillFileText, AiFillBulb, AiFillAudio } from "react-icons/ai";
 import { BiCrown } from "react-icons/bi";
 import { RiLeafLine } from "react-icons/ri";
-import landing from "../../assets/landing.png";
-import logo from "../../assets/logo.png";
 import Login from "../components/Login";
 import Starfill from "../components/Starfill";
 
@@ -51,7 +49,7 @@ export default function LoggedOut() {
         <nav className="nav">
           <div className="nav__wrapper">
             <figure className="nav__img--mask">
-              <Image className="nav__img" src={logo} alt="logo" />
+              <Image className="nav__img" src="/logo.png" alt="logo" width={100} height={100} />
             </figure>
             <ul className="nav__list--wrapper">
               <li
@@ -91,7 +89,7 @@ export default function LoggedOut() {
                     </button>
                   </div>
                   <figure className="landing__image--mask">
-                    <Image src={landing} alt="landing" />
+                    <Image src="/landing.png" alt="landing" width={500} height={300} />
                   </figure>
                 </div>
               </div>
