@@ -1,6 +1,5 @@
-'use client';
 
-import { useState } from "react";
+
 import LoggedOut from "../loggedout/page";
 import LoggedIn from "../loggedIn/page";
 
@@ -8,13 +7,11 @@ import LoggedIn from "../loggedIn/page";
 
 const Landing = () => {
 
-
-
-  const [loggedIn, setLoggedIn] = useState(false);
+    const loggedIn = false; // Replace with actual authentication logic
 
   return (
     <div>
-        {loggedIn ? <LoggedIn setLoggedIn={setLoggedIn} /> : <LoggedOut setLoggedIn={setLoggedIn} />}
+        {loggedIn ? <LoggedIn /> : <LoggedOut />}
     </div>
   )
 }

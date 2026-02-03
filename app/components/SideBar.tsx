@@ -1,8 +1,15 @@
-export default function SideBar({ setLoggedIn }: { setLoggedIn: React.Dispatch<React.SetStateAction<boolean>> }) {
+import React from 'react';
+
+export default function SideBar() {
+  const handleLogout = () => {
+    
+   
+  };
+
   return (
     <aside className="sidebar">
       <h2>Side Bar</h2>
-      <button onClick={() => setLoggedIn(false)}>Log Out</button>
+      <button onClick={handleLogout}>Log Out</button>
     </aside>
   );
 }

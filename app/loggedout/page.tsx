@@ -10,11 +10,7 @@ import logo from "../../assets/logo.png";
 import Login from "../components/Login";
 import Starfill from "../components/Starfill";
 
-export default function LoggedOut({
-  setLoggedIn,
-}: {
-  setLoggedIn: React.Dispatch<React.SetStateAction<boolean>>;
-}) {
+export default function LoggedOut() {
   useEffect(() => {
     const highlights: NodeListOf<Element> =
       document.querySelectorAll("#highlight");
@@ -49,7 +45,7 @@ export default function LoggedOut({
   return (
     <>
       {showModal && (
-        <Login handleShowModal={handleShowModal} setLoggedIn={setLoggedIn} />
+        <Login handleShowModal={handleShowModal} />
       )}
       <div>
         <nav className="nav">

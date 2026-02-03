@@ -1,10 +1,7 @@
-import SideBar from "../components/SideBar";
-import SearchBar from "../components/SearchBar";
 
-export default function LoggedIn({ setLoggedIn }: { setLoggedIn: React.Dispatch<React.SetStateAction<boolean>> }) {
+export default function LoggedIn() {
     return (
         <section className="logged-in">
-            
         </section>
     );
 }

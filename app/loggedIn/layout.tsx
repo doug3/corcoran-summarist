@@ -4,24 +4,24 @@ import SearchBar from "../components/SearchBar";
 
 export default function LoggedInLayout({
   children,
-  setLoggedIn,
 }: {
   children: React.ReactNode;
-  setLoggedIn: React.Dispatch<React.SetStateAction<boolean>>;
 }) {
   return (
-    <>
+    <section>
       <div className="flex">
         <div className="flex flex-col w-48 h-screen border-r border-gray-300">
-          <SideBar setLoggedIn={setLoggedIn} />
+          <SideBar />
         </div>
         <div className="flex flex-col flex-1">
           <div className="h-24 flex items-center justify-end px-4 border-b border-gray-300">
             <SearchBar />
           </div>
+          <div className="flex-1 p-4">
+            {children}
+          </div>
         </div>
       </div>
-      {children}
-    </>
+    </section>
   );
 }

@@ -17,11 +17,12 @@ import { IconFidgetSpinner } from "@tabler/icons-react";
 
 export default function Login({
   handleShowModal,
-  setLoggedIn,
 }: {
   handleShowModal: () => void;
-  setLoggedIn: Dispatch<React.SetStateAction<boolean>>;
 }) {
+
+  const handleLogin = () => {
+  }
 
   const [loading, setLoading] = useState(false);
 
@@ -39,7 +40,7 @@ export default function Login({
     const result = await createUser(email, password);
     if (result?.user) {
       await sendEmailVerification();
-      setLoggedIn(true);
+      handleLogin();
       handleShowModal();
     }
   };
@@ -49,7 +50,7 @@ export default function Login({
     setLoading(true);
     const result = await loginUser(email, password);
     if (result?.user) {
-      setLoggedIn(true);
+      handleLogin();
       handleShowModal();
     }
   };
@@ -57,7 +58,7 @@ export default function Login({
   const onClickGoogleLogin = async () => {
     setLoading(true);
     await signInWithGoogle();
-    setLoggedIn(true);
+    handleLogin();
     handleShowModal();
   };
 
@@ -109,7 +110,7 @@ export default function Login({
                 id="guest-login"
                 onClick={() => {
                   handleShowModal();
-                  setLoggedIn(true);
+                  handleLogin();
                 }}
                 className="inline-flex h-12 w-full text-white justify-center items-center text-center bg-blue-700 hover:bg-blue-900 rounded border border-slate-300 p-2 text-lg font-medium outline-none focus:ring-2 focus:ring-[#333] focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-60"
               >
