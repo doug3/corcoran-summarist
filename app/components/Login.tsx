@@ -1,40 +1,66 @@
 "use client";
-import { useState } from "react";
+import { useState, Dispatch } from "react";
 import { useRouter } from "next/navigation";
 import { auth } from "../firebase/config";
 import {
   useCreateUserWithEmailAndPassword,
   useSendEmailVerification,
+  useSignInWithEmailAndPassword,
+  useSignInWithGoogle,
+  
 } from "react-firebase-hooks/auth";
 import Link from "next/link";
 import Image from "next/image";
 import { FaUserLarge } from "react-icons/fa6";
 import { IconFidgetSpinner } from "@tabler/icons-react";
 
+
 export default function Login({
   handleShowModal,
+  setLoggedIn,
 }: {
   handleShowModal: () => void;
+  setLoggedIn: Dispatch<React.SetStateAction<boolean>>;
 }) {
+
+  const [loading, setLoading] = useState(false);
+
   const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [createUser] = useCreateUserWithEmailAndPassword(auth);
   const [sendEmailVerification] = useSendEmailVerification(auth);
+  const [loginUser] = useSignInWithEmailAndPassword(auth);
+  const [signInWithGoogle] = useSignInWithGoogle(auth);
 
   const onSubmitCreate = async () => {
-    console.log("Creating user...",email,"   ",password);
-    await createUser(email, password);
-    await sendEmailVerification();
-    router.push("/loggedin");
+    console.log("Creating user...", email, "   ", password);
+    setLoading(true);
+    const result = await createUser(email, password);
+    if (result?.user) {
+      await sendEmailVerification();
+      setLoggedIn(true);
+      handleShowModal();
+    }
   };
 
   const onSubmitLogin = async () => {
-    await createUser(email, password);
-    await sendEmailVerification();
-    console.log("Checking verification status...",email,"   ",password);
-    router.push("/loggedin");
+    console.log("Logging in user...", email, "   ", password);
+    setLoading(true);
+    const result = await loginUser(email, password);
+    if (result?.user) {
+      setLoggedIn(true);
+      handleShowModal();
+    }
   };
+
+  const onClickGoogleLogin = async () => {
+    setLoading(true);
+    await signInWithGoogle();
+    setLoggedIn(true);
+    handleShowModal();
+  };
+
   return (
     <div
       className="w-full h-full absolute top-0 backdrop-filter backdrop-brightness-75 backdrop-blur-md flex justify-center items-center"
@@ -72,15 +98,19 @@ export default function Login({
             <h3 className="text-2xl mb-0.5 font-medium"></h3>
             <p className="mb-4 text-sm font-normal text-gray-800"></p>
 
-            <div className="text-center items-end h-16">
+            <div className="text-center items-end h-">
               <p className="mb-3 text-2xl font-semibold leading-5 text-slate-900">
                 Log In to Summarist
               </p>
             </div>
 
-            <div className="mt-7 flex flex-col gap-6">
+            <div className="mt-7 flex flex-col gap-2">
               <button
                 id="guest-login"
+                onClick={() => {
+                  handleShowModal();
+                  setLoggedIn(true);
+                }}
                 className="inline-flex h-12 w-full text-white justify-center items-center text-center bg-blue-700 hover:bg-blue-900 rounded border border-slate-300 p-2 text-lg font-medium outline-none focus:ring-2 focus:ring-[#333] focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-60"
               >
                 <FaUserLarge className="absolute left-2 h-8 w-8" />
@@ -95,6 +125,7 @@ export default function Login({
 
               <button
                 id="google-login"
+                onClick={onClickGoogleLogin}
                 className="inline-flex h-12 w-full items-center justify-center bg-blue-500 hover:bg-blue-700 rounded p-2 text-lg font-medium text-white outline-none focus:ring-2 focus:ring-[#333] focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-60"
               >
                 <Image
@@ -111,7 +142,7 @@ export default function Login({
                 or
                 <div className="h-px w-full bg-slate-600"></div>
               </div>
-              <div className="mb-4 text-center text-sm text-gray-500"></div>
+              <div className="text-center text-sm text-gray-500"></div>
             </div>
 
             <form className="w-full">
@@ -141,9 +172,9 @@ export default function Login({
               />
 
               <button
-                id="email-login"
-                type="submit"
-                onSubmit={onSubmitCreate}
+                id="email-create"
+                type="button"
+                onClick={onSubmitCreate}
                 className="inline-flex w-50 items-center justify-center rounded-lg bg-fuchsia-300 p-2 py-3 mt-4! mr-2 text-xl font-medium text-black outline-none  disabled:bg-gray-400"
               >
                 Create New Account
@@ -151,28 +182,24 @@ export default function Login({
 
               <button
                 id="email-login"
-                type="submit"
-                onSubmit={onSubmitLogin}
+                type="button"
+                onClick={onSubmitLogin}
                 className="inline-flex w-50 items-center justify-center rounded-lg bg-green-400 p-2 py-3 mt-4! text-xl font-medium text-black outline-none  disabled:bg-gray-400"
               >
                 Login
               </button>
             </form>
 
-            <p className="mb-3! mt-4! text-lg text-gray-500 text-center">
+            <p className="mb-3! mt-4! text-lg text-blue-400 text-center">
               <Link
                 href="/forgot-password"
-                className="text-blue-800 hover:text-blue-600"
+                className="text-blue-900 hover:text-blue-900"
               >
                 Forgot your password?
               </Link>
             </p>
 
-            <div className="mt-6! text-center text-lg text-blue-800 hover:text-blue-500 bg-slate-300">
-              <Link href="/signup" className="font-medium">
-                Don&apos;t have an account?
-              </Link>
-            </div>
+            {loading && <IconFidgetSpinner className="animate-spin w-12 h-12 mx-auto" />}
           </div>
         </div>
       </div>

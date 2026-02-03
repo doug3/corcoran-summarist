@@ -6,6 +6,7 @@ import StoreProvider from "./store/StoreProvider";
 import Login from "./components/Login";
 import { useState } from "react";
 import Home from "./page";
+import LoggedIn from "./loggedIn/page";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -22,13 +23,7 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const [showModal, setShowModal] = useState(false);
 
-  const handleShowModal = () => {
-    document.body.style.overflow = showModal ? "auto" : "hidden";
-    window.scrollTo(0, 0);
-    setShowModal(!showModal);
-  };
   
   return (
     <StoreProvider>
@@ -36,8 +31,8 @@ export default function RootLayout({
         <body
           className={`${geistSans.variable} ${geistMono.variable} antialiased`}
         >
-          <Home handleShowModal={handleShowModal} />
-          {showModal && <Login handleShowModal={handleShowModal} />}
+          {children}
+          
         </body>
       </html>
     </StoreProvider>
