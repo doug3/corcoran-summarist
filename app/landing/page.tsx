@@ -5,7 +5,8 @@ import { useRouter } from "next/navigation";
 import LoggedOut from "../loggedout/page";
 
 const Landing = () => {
-    const loggedIn = true; // Replace with actual authentication logic
+    const loggedIn = false
+    ; // Replace with actual authentication logic
     const router = useRouter();
 
     React.useEffect(() => {

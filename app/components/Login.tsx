@@ -7,26 +7,24 @@ import {
   useSendEmailVerification,
   useSignInWithEmailAndPassword,
   useSignInWithGoogle,
-  
 } from "react-firebase-hooks/auth";
 import Link from "next/link";
 import Image from "next/image";
 import { FaUserLarge } from "react-icons/fa6";
 import { IconFidgetSpinner } from "@tabler/icons-react";
 
-
 export default function Login({
   handleShowModal,
 }: {
   handleShowModal: () => void;
 }) {
-
+  const router = useRouter();
   const handleLogin = () => {
-  }
+    router.push("/loggedIn");
+  };
 
   const [loading, setLoading] = useState(false);
 
-  const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [createUser] = useCreateUserWithEmailAndPassword(auth);
@@ -37,29 +35,48 @@ export default function Login({
   const onSubmitCreate = async () => {
     console.log("Creating user...", email, "   ", password);
     setLoading(true);
-    const result = await createUser(email, password);
-    if (result?.user) {
-      await sendEmailVerification();
-      handleLogin();
-      handleShowModal();
+    try {
+      const result = await createUser(email, password);
+      if (result?.user) {
+        const user = result.user;
+        await sendEmailVerification();
+        handleLogin();
+        handleShowModal();
+      }
+    } catch (error) {
+      console.error("Error creating user:", error);
+    } finally {
+      setLoading(false);
     }
   };
 
   const onSubmitLogin = async () => {
     console.log("Logging in user...", email, "   ", password);
     setLoading(true);
-    const result = await loginUser(email, password);
-    if (result?.user) {
-      handleLogin();
-      handleShowModal();
+    try {
+      const result = await loginUser(email, password);
+      if (result?.user) {
+        handleLogin();
+        handleShowModal();
+      }
+    } catch (error) {
+      console.error("Error logging in user:", error);
+    } finally {
+      setLoading(false);
     }
   };
 
   const onClickGoogleLogin = async () => {
     setLoading(true);
-    await signInWithGoogle();
-    handleLogin();
-    handleShowModal();
+    try {
+      await signInWithGoogle();
+      handleLogin();
+      handleShowModal();
+    } catch (error) {
+      console.error("Error signing in with Google:", error);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -200,7 +217,9 @@ export default function Login({
               </Link>
             </p>
 
-            {loading && <IconFidgetSpinner className="animate-spin w-12 h-12 mx-auto" />}
+            {loading && (
+              <IconFidgetSpinner className="animate-spin w-12 h-12 mx-auto" />
+            )}
           </div>
         </div>
       </div>
