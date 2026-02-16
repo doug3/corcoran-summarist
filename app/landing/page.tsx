@@ -5,13 +5,13 @@ import { useRouter } from "next/navigation";
 import LoggedOut from "../loggedout/page";
 
 const Landing = () => {
-    const loggedIn = false
+    const loggedIn = true; // Replace with actual authentication logic
     ; // Replace with actual authentication logic
     const router = useRouter();
 
     React.useEffect(() => {
         if (loggedIn) {
-            router.push('/loggedIn');
+            router.push('/loggedIn/for-you');
         }
     }, [loggedIn, router]);
 
