@@ -7,6 +7,7 @@ interface Book {
     author: string;
     subTitle: string;
     averageRating: number;
+    subscriptionRequired: boolean;
 }
 
 interface BookCardProps {
@@ -16,7 +17,12 @@ interface BookCardProps {
 const bookCard: React.FC<BookCardProps> = (props) => {
     const { book } = props;
     return (
-        <div>
+        <div className="relative pt-4">
+            {book.subscriptionRequired && (
+                <div className="absolute top-0 right-2 bg-black text-white px-2 py-1 text-xs font-bold rounded-2xl border border-blue-500">
+                    Premium
+                </div>
+            )}
             <img
                 src={book.imageLink}
                 alt={book.title}
