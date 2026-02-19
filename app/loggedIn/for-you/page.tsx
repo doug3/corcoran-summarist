@@ -10,6 +10,7 @@ interface Book {
   subTitle: string;
   imageLink: string;
   averageRating: number;
+  subscriptionRequired: boolean;
 }
 
 export default function ForYou() {
