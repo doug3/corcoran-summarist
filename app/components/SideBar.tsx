@@ -4,6 +4,8 @@ import { auth } from "../firebase/config";
 import { useSignOut } from "react-firebase-hooks/auth";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import { IoHomeOutline , IoBookmarkOutline , IoSearchOutline, IoSettingsOutline , IoHelpCircleOutline , IoLogOutOutline } from "react-icons/io5";
+import { BsHighlighter } from "react-icons/bs";
 
 export default function SideBar() {
   const [signOut, loading, error] = useSignOut(auth);
@@ -25,31 +27,38 @@ export default function SideBar() {
           height={100}
         />
       </figure>
-      <nav className="flex flex-col justify-between h-full">
-        <div className="flex flex-col gap-2 p-3">
-          <Link href="/for-you" className="nav__link">
-            For you
+      <nav className="flex flex-col justify-between h-full text-lg mt-10">
+        <div className="flex flex-col gap-10 p-4">
+          <Link href="/loggedIn/for-you" className="nav__link">
+            <span className="flex items-center gap-2"><IoHomeOutline size={28}/>For You</span>
           </Link>
-          <Link href="/myLibrary" className="nav__link">
-            My Library
+          <Link href="/loggedIn/myLibrary" className="nav__link">
+              <span className="flex items-center gap-2"><IoBookmarkOutline size={28}/>My Library</span>
+          </Link>
+          <Link href="" className="cursor-not-allowed">
+            <span className="flex items-center gap-2"><BsHighlighter size={28}/>Highlights</span>
+          </Link>
+          <Link href="" className="cursor-not-allowed">
+            <span className="flex items-center gap-2"><IoSearchOutline size={28}/>Search</span>
           </Link>
         </div>
 
-        <div className="flex flex-col gap-2 p-3">
-          <Link href="/settings" className="nav__link">
-            Settings
+        <div className="flex flex-col gap-10 p-4 mb-8">
+          <Link href="/loggedIn/settings" className="nav__link">
+            <span className="flex items-center gap-2"><IoSettingsOutline size={28}/>Settings</span>
           </Link>
-          <Link href="/help" className="nav__link">
-            Help &amp; Support
+          <Link href="" className="cursor-not-allowed">
+            <span className="flex items-center gap-2"><IoHelpCircleOutline size={28}/>Help &amp; Support</span>
           </Link>
         
         <Link
-          href="/logout"
+          href="/loggedout"
           className=""
           onClick={handleLogout}
         >
-          Logout
+          <span className="flex items-center gap-2"><IoLogOutOutline size={28}/>Logout</span>
         </Link>
+        
         </div>
       </nav>
     </aside>
