@@ -12,7 +12,7 @@ export default function LoggedInLayout({
   return (
     <section>
       <div className="flex">
-        <div className="flex flex-col w-48 h-screen border-r border-gray-300">
+        <div className="flex flex-col w-52 h-screen border-r border-gray-300">
           <SideBar />
         </div>
         <div className="flex flex-col flex-1">

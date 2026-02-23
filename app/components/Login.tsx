@@ -20,7 +20,7 @@ export default function Login({
 }) {
   const router = useRouter();
   const handleLogin = () => {
-    router.push("/loggedIn");
+    router.push("/loggedIn/for-you");
   };
 
   const [loading, setLoading] = useState(false);
